@@ -4,7 +4,6 @@ let imageWidth = Dimensions.get('window').width / 2;
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
   },
