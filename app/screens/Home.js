@@ -4,6 +4,7 @@ import {View, StatusBar} from 'react-native';
 import Container from '../components/Container';
 import Logo from '../components/Logo';
 import InputWithButton from '../components/TextInput';
+import SwitchButton from '../components/Button';
 
 const TEMP_DEFAULT = '100';
 const TEMP_QUOTE = '79.8';
@@ -13,9 +14,13 @@ export default () => {
     console.log('btn pressed');
   };
 
-  const handleTextChange = (text) => {
+  const handleTextChange = text => {
     console.log(text);
-  }
+  };
+
+  const swapCurrency = () => {
+    console.log('swapped currency');
+  };
 
   return (
     <Container>
@@ -34,6 +39,7 @@ export default () => {
         onPress={pressed}
         value={TEMP_QUOTE}
       />
+      <SwitchButton text="Swap Currency" onPress={swapCurrency} />
     </Container>
   );
 };
