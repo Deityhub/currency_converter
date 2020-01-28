@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, KeyboardAvoidingView} from 'react-native';
 
 import Container from '../components/Container';
 import Logo from '../components/Logo';
@@ -35,28 +35,30 @@ export default () => {
   return (
     <Container>
       <StatusBar translucent={false} barStyle="light-content" />
-      <Header onPress={handleOptionPress} />
-      <Logo />
-      <InputWithButton
-        label={TEMP_BASE_CURRENCY}
-        onPress={pressed}
-        defaultValue={TEMP_DEFAULT}
-        keyboardType="numeric"
-        onChangeText={handleTextChange}
-      />
-      <InputWithButton
-        label={TEMP_QUOTE_CURRENCY}
-        editable={false}
-        onPress={pressed}
-        value={TEMP_QUOTE}
-      />
-      <LastConverted
-        base={TEMP_BASE_CURRENCY}
-        quote={TEMP_QUOTE_CURRENCY}
-        date={TEMP_CONVERSION_DATE}
-        conversionRate={TEMP_CONVERSION_RATE}
-      />
-      <SwitchButton text="Swap Currency" onPress={swapCurrency} />
+      <Header onPress={handleOptionPress} behavior="position" />
+      <KeyboardAvoidingView>
+        <Logo />
+        <InputWithButton
+          label={TEMP_BASE_CURRENCY}
+          onPress={pressed}
+          defaultValue={TEMP_DEFAULT}
+          keyboardType="numeric"
+          onChangeText={handleTextChange}
+        />
+        <InputWithButton
+          label={TEMP_QUOTE_CURRENCY}
+          editable={false}
+          onPress={pressed}
+          value={TEMP_QUOTE}
+        />
+        <LastConverted
+          base={TEMP_BASE_CURRENCY}
+          quote={TEMP_QUOTE_CURRENCY}
+          date={TEMP_CONVERSION_DATE}
+          conversionRate={TEMP_CONVERSION_RATE}
+        />
+        <SwitchButton text="Swap Currency" onPress={swapCurrency} />
+      </KeyboardAvoidingView>
     </Container>
   );
 };
