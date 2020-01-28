@@ -6,6 +6,7 @@ import Logo from '../components/Logo';
 import InputWithButton from '../components/TextInput';
 import SwitchButton from '../components/Button';
 import LastConverted from '../components/Text';
+import Header from '../components/Header';
 
 const TEMP_BASE_CURRENCY = 'USD';
 const TEMP_QUOTE_CURRENCY = 'GBP';
@@ -27,9 +28,14 @@ export default () => {
     console.log('swapped currency');
   };
 
+  const handleOptionPress = () => {
+    console.log('option pressed');
+  };
+
   return (
     <Container>
       <StatusBar translucent={false} barStyle="light-content" />
+      <Header onPress={handleOptionPress} />
       <Logo />
       <InputWithButton
         label={TEMP_BASE_CURRENCY}
