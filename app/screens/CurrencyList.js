@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, FlatList, View, StatusBar} from 'react-native';
+import {FlatList, View, StatusBar} from 'react-native';
 
 import {ListItem, Separator} from '../components/List';
 import currencies from '../data/currencies';
@@ -20,6 +20,7 @@ const CurrencyList = () => {
           <ListItem
             text={item}
             selected={item === SELECTED_CURRENCY}
+            checked
             onPress={handlePress}
           />
         )}
