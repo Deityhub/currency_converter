@@ -15,9 +15,13 @@ const TEMP_QUOTE = '79.8';
 const TEMP_CONVERSION_RATE = 0.79;
 const TEMP_CONVERSION_DATE = new Date();
 
-export default () => {
-  const pressed = () => {
-    console.log('btn pressed');
+export default ({navigation}) => {
+  const pressedBase = () => {
+    navigation.push('CurrencyList', {title: 'Base Currency'});
+  };
+
+  const pressedQuote = () => {
+    navigation.push('CurrencyList', {title: 'Quote Currency'});
   };
 
   const handleTextChange = text => {
@@ -40,7 +44,7 @@ export default () => {
         <Logo />
         <InputWithButton
           label={TEMP_BASE_CURRENCY}
-          onPress={pressed}
+          onPress={pressedBase}
           defaultValue={TEMP_DEFAULT}
           keyboardType="numeric"
           onChangeText={handleTextChange}
@@ -48,7 +52,7 @@ export default () => {
         <InputWithButton
           label={TEMP_QUOTE_CURRENCY}
           editable={false}
-          onPress={pressed}
+          onPress={pressedQuote}
           value={TEMP_QUOTE}
         />
         <LastConverted
