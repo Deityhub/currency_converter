@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StatusBar, KeyboardAvoidingView} from 'react-native';
+import {connect} from 'react-redux';
 
 import Container from '../components/Container';
 import Logo from '../components/Logo';
@@ -7,6 +8,7 @@ import InputWithButton from '../components/TextInput';
 import SwitchButton from '../components/Button';
 import LastConverted from '../components/Text';
 import Header from '../components/Header';
+import {swapCurrency, changeCurrencyAmount} from '../actions/currencies';
 
 const TEMP_BASE_CURRENCY = 'USD';
 const TEMP_QUOTE_CURRENCY = 'GBP';
@@ -15,7 +17,7 @@ const TEMP_QUOTE = '79.8';
 const TEMP_CONVERSION_RATE = 0.79;
 const TEMP_CONVERSION_DATE = new Date();
 
-export default ({navigation}) => {
+const Home = ({navigation, changeAmount, swapCurrency}) => {
   const pressedBase = () => {
     navigation.push('CurrencyList', {title: 'Base Currency'});
   };
@@ -24,16 +26,12 @@ export default ({navigation}) => {
     navigation.push('CurrencyList', {title: 'Quote Currency'});
   };
 
-  const handleTextChange = text => {
-    console.log(text);
-  };
-
-  const swapCurrency = () => {
-    console.log('swapped currency');
+  const handleAmountChange = amount => {
+    changeAmount(amount);
   };
 
   const handleOptionPress = () => {
-    console.log('option pressed');
+    navigation.navigate('Options');
   };
 
   return (
@@ -47,7 +45,7 @@ export default ({navigation}) => {
           onPress={pressedBase}
           defaultValue={TEMP_DEFAULT}
           keyboardType="numeric"
-          onChangeText={handleTextChange}
+          onChangeText={handleAmountChange}
         />
         <InputWithButton
           label={TEMP_QUOTE_CURRENCY}
@@ -66,3 +64,13 @@ export default ({navigation}) => {
     </Container>
   );
 };
+
+const mapDispatchToProps = dispatch => ({
+  swapCurrency: () => dispatch(swapCurrency()),
+  changeAmount: amount => dispatch(changeCurrencyAmount(amount)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Home);

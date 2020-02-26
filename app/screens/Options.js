@@ -1,19 +1,29 @@
 import React from 'react';
-import {ScrollView, StatusBar} from 'react-native';
+import {ScrollView, StatusBar, Linking} from 'react-native';
 import {Icon} from 'react-native-elements';
+import PropTypes from 'prop-types';
 
 import {ListItem, Separator} from '../components/List';
 
 const ICON_SIZE = 23;
 const ICON_COLOR = '#868686';
 
-const Options = () => {
+const Options = ({navigation}) => {
   const handleThemesPress = () => {
-    console.log('Theme pressed');
+    navigation.navigate('Themes');
   };
 
   const handleSitePress = () => {
-    console.log('Site pressed');
+    let url = 'https://fixer.io';
+    Linking.canOpenURL(url)
+      .then(supported => {
+        if (!supported) {
+          alert("Can't handle url: " + url);
+        } else {
+          return Linking.openURL(url);
+        }
+      })
+      .catch(err => alert('An error occurred', err));
   };
   return (
     <ScrollView>
@@ -45,6 +55,10 @@ const Options = () => {
       />
     </ScrollView>
   );
+};
+
+Options.propTypes = {
+  navigation: PropTypes.object,
 };
 
 export default Options;

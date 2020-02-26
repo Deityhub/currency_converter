@@ -1,5 +1,6 @@
 import React from 'react';
 import {ScrollView, StatusBar} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {ListItem, Separator} from '../components/List';
 
@@ -8,9 +9,9 @@ const ORANGE = '#D57A66';
 const GREEN = '#00BD9D';
 const PURPLE = '#9E768F';
 
-const Themes = () => {
+const Themes = ({navigation}) => {
   const handleThemePress = color => {
-    console.log('press theme', color);
+    navigation.goBack();
   };
 
   return (
@@ -50,6 +51,10 @@ const Themes = () => {
       <Separator />
     </ScrollView>
   );
+};
+
+Themes.propTypes = {
+  navigation: PropTypes.object,
 };
 
 export default Themes;

@@ -1,8 +1,12 @@
 import React from 'react';
+import {Provider} from 'react-redux';
+import store from './store';
 
 import MyStack from './config/routes';
-import Options from './screens/Options';
-import Themes from './screens/Themes';
 
 // TODO: render different screens based on app interaction
-export default () => <MyStack />;
+export default () => (
+  <Provider store={store}>
+    <MyStack />
+  </Provider>
+);

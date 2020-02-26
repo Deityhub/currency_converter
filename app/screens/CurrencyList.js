@@ -1,14 +1,15 @@
 import React from 'react';
 import {FlatList, View, StatusBar} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {ListItem, Separator} from '../components/List';
 import currencies from '../data/currencies';
 
-const CurrencyList = () => {
+const CurrencyList = ({navigation}) => {
   const SELECTED_CURRENCY = 'CAD';
 
   const handlePress = () => {
-    console.log('pressed me');
+    navigation.goBack();
   };
 
   return (
@@ -29,6 +30,10 @@ const CurrencyList = () => {
       />
     </View>
   );
+};
+
+CurrencyList.propTypes = {
+  navigation: PropTypes.object,
 };
 
 export default CurrencyList;
